@@ -302,6 +302,12 @@ bool OmplGlobalPlanner::makePlan(const geometry_msgs::PoseStamped& start, const 
     //ob::OptimizationObjectivePtr objective(new CostMapWorkObjective(*this, si));
 
     ob::ProblemDefinitionPtr pdef(new ob::ProblemDefinition(si));
+
+    ob::MultiOptimizationObjective* multOptimObjective = new ob::MultiOptimizationObjective(si);
+
+    multOptimObjective->addObjective(cost_objective, 5.0);
+    multOptimObjective->addObjective(length_objective, 1.0);
+    
     pdef->setStartAndGoalStates(ompl_start, ompl_goal, 0.1);
     pdef->setOptimizationObjective(cost_objective + length_objective);
 

@@ -3,6 +3,8 @@ project(move_base_ompl)
 
 add_compile_options(-std=c++11)
 
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/CMakeModules/")
+
 find_package(catkin REQUIRED
   COMPONENTS
     costmap_2d
